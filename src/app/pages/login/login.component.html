@@ -1,4 +1,8 @@
-Username: <input type="text" name="username" id="username" value="{{username}}">
-password: <input type="password" name="pass" id="pass">
+<p *ngIf="invalidPass">{{errorMessage}}</p>
 
-<button (click)="handleLogin()">Login</button>
+<div>
+    Username: <input type="text" name="username" id="username" [(ngModel)]="username">
+    password: <input type="password" name="pass" id="pass" [(ngModel)]="password">
+
+    <button (click)="handleLogin()">Login</button>
+</div>
