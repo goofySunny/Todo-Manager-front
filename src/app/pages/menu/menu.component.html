@@ -4,16 +4,16 @@
 
         <ul class="navbar-nav">
 
-            <li><a href="/home/najaf" class="nav-link">Home</a></li>
-            <li><a href="/todos" class="nav-link">TodoList</a></li>
+            <li *ngIf="hardCodeAuth.isUserLoggedIn()"><a href="/home/najaf" class="nav-link">Home</a></li>
+            <li *ngIf="hardCodeAuth.isUserLoggedIn()"><a href="/todos" class="nav-link">TodoList</a></li>
         
         </ul>
 
         
         <ul class="navbar-nav justify-content-end navbar-collapse">
 
-            <li><a href="/login" class="nav-link">Login</a></li>
-            <li ><a href="" class="nav-link">Logout</a></li>
+            <li *ngIf="!hardCodeAuth.isUserLoggedIn()"><a href="/login" class="nav-link">Login</a></li>
+            <li *ngIf="hardCodeAuth.isUserLoggedIn()"><a href="/logout" class="nav-link">Logout</a></li>
         
         </ul>
     </nav>
