@@ -11,6 +11,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { RouteGuardService } from './services/routeGuard/route-guard.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 
 
 
@@ -32,12 +33,13 @@ const routes: Routes = [
     TodoListComponent,
     MenuComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
