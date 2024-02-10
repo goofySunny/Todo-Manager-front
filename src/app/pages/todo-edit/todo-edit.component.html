@@ -1,0 +1,19 @@
+<h1>Update or Edit your todo</h1>
+
+<div class="container">
+
+    <fieldset class="form-group">
+        <label for="desc">Enter description</label>
+        <input [(ngModel)]="todo.desc" type="text" class="form-control" name="desc" required>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label for="targetDate">Enter date</label>
+        <input type="date" class="form-control"
+        [ngModel]="todo.date | date: 'yyyy-MM-dd'"
+        (ngModelChange)="todo.date"
+        name="targetDate" required>
+    </fieldset>
+
+    <button class="btn btn-success my-3" (click)="updateData()">Save changes</button>
+</div>

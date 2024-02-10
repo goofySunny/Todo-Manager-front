@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataExchangeService } from 'src/app/services/data/data-exchange.service';
 import { HardCodedAuthService } from 'src/app/services/hardCodedAuth/hard-coded-auth.service';
 
 @Component({
@@ -17,8 +16,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private router: Router,
-    private hardCodedAuthService: HardCodedAuthService,
-    private dataExchangeService : DataExchangeService) {
+    private hardCodedAuthService: HardCodedAuthService) {
 
   }
 
@@ -29,7 +27,6 @@ export class LoginComponent implements OnInit {
   handleLogin() : void {
     if (this.hardCodedAuthService.authenticate(this.username, this.password)) {
       this.router.navigate(['home', this.username]);
-      this.dataExchangeService.signedInUser = this.username;
     } else {
       this.invalidPass = true;
     }

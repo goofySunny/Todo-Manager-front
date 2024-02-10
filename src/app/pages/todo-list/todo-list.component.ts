@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TodoListService } from 'src/app/services/data/todo-list.service';
-import { LoginComponent } from '../login/login.component';
-import { DataExchangeService } from 'src/app/services/data/data-exchange.service';
+import { Router } from '@angular/router';
 
 
 
@@ -18,10 +17,12 @@ export class TodoListData {
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-    alert:string= '';
-    username: string =  'najafer';
-    alertStatus: boolean = false;
-    todos: TodoListData[] = [];
+  alert: string = '';
+  username: string = 'najafer';
+  alertStatus: boolean = false;
+  todos: TodoListData[] = [];
+  toSave: TodoListData;
+  saveResponse: string = '';
 
   // todos = [
   //   new Todo(1, "Learn Angular", new Date(), false),
@@ -35,31 +36,75 @@ export class TodoListComponent implements OnInit {
   // ]
 
   constructor(private dataService: TodoListService,
-    private dataExchangeService: DataExchangeService) { }
+    private router: Router,
+    private cdRef: ChangeDetectorRef) { }
 
 
   ngOnInit(): void {
+    this.toSave = new TodoListData(0, '', new Date(), false);
     this.dataService.retrieveAllTodos('sunny').subscribe(
       response => {
-        console.log(response)
+        // console.log(response)
         this.todos = response;
       },
       error => console.log(error)
     );
-    this.username = this.dataExchangeService.signedInUser;
   }
 
-  deleteTodo(id: number, username:string) {
+  // deleteTodo(id: number, username:string) {
+  //   this.dataService.deleteTodo(id, username).subscribe(
+  //     response => { 
+  //       this.alert = 'successful'
+  //       this.alertStatus = true;
+  //     },
+  //     error => {
+  //       this.alert = 'failed'
+  //       this.alertStatus = false;
+  //     }
+
+  //   )
+  // }
+  deleteTodo(id: number, username: string) {
     this.dataService.deleteTodo(id, username).subscribe(
-      response => { 
-        this.alert = 'successful'
+      response => {
+        // Assuming todos is your local array that holds all todo items
+        // and each todo item has an id property
+        this.todos = this.todos.filter(todo => todo.id !== id);
+
+        // Update alert messages
+        this.alert = 'Deletion successful';
         this.alertStatus = true;
       },
       error => {
-        this.alert = 'failed'
+        this.alert = 'Deletion failed';
         this.alertStatus = false;
       }
-      
+    );
+  }
+
+  updateTodo(id: number) {
+    console.log(id);
+    this.router.navigate(['todo', id])
+  }
+
+  addTodoHandler() {
+    document.getElementById("overlay")!.style.display = "block";
+  }
+
+  saveTodoHandler() {
+    this.toSave.done = false;
+    this.dataService.saveTodo('najafer', this.toSave).subscribe(
+      response => {
+        this.saveResponse = 'success'
+        
+      },
+      error => this.saveResponse = error
     )
+    this.todos.push(this.toSave)
+    this.cancelHandler()
+  }
+
+  cancelHandler() {
+    document.getElementById("overlay")!.style.display = "none"
   }
 }

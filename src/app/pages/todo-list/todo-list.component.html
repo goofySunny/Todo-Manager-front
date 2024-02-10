@@ -11,7 +11,8 @@
                 <th>Description</th>
                 <th>Date</th>
                 <th>is it Done?</th>
-                <th>Do Something</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +20,30 @@
                 <td>{{todo.desc}}</td>
                 <td>{{todo.date | date}}</td>
                 <td>{{todo.done}}</td>
+                <td><button class="btn btn-success" (click)="updateTodo(todo.id)">Edit</button></td>
                 <td><button class="btn btn-warning" (click)="deleteTodo(todo.id, 'najaf')">Delete</button></td>
             </tr>
         </tbody>
     </table>
+    <button class="btn btn-info float-end" (click)="addTodoHandler()">Add Todo</button>
+
+
+
+    <div id="overlay">
+        <div class="content p-5 bg-dark">
+
+            <fieldset class="form-group">
+                <label for="desc">Enter todo description</label>
+                <input type="text" name="desc" class="form-control" [(ngModel)]="toSave.desc">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="date">Enter target date</label>
+                <input type="date" name="date" class="form-control" [(ngModel)]="toSave.date">
+            </fieldset>
+            <button class="btn btn-warning" (click)="cancelHandler()">Cancel</button>
+            <button class="btn btn-success" (click)="saveTodoHandler()">Save</button>
+        </div>
+    </div>
+
 </div>
