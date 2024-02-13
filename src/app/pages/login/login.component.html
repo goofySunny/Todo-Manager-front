@@ -3,9 +3,11 @@
     <p *ngIf="invalidPass" class="alert alert-warning">{{errorMessage}}</p>
 
     <div>
-        Username: <input type="text" name="username" id="username" [(ngModel)]="username">
-        password: <input type="password" name="pass" id="pass" [(ngModel)]="password">
+        <form (ngSubmit)="handleLogin()">
+            Username: <input type="text" name="username" id="username" [(ngModel)]="username">
+            password: <input type="password" name="pass" id="pass" [(ngModel)]="password">
 
-        <button (click)="handleLogin()" class="btn btn-success" id="submit">Login</button>
+            <button type="submit" class="btn btn-success" id="submit">Login</button>
+        </form>
     </div>
 </div>

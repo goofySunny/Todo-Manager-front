@@ -20,21 +20,33 @@ export class TodoEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.id = this.router.snapshot.params['id']
+      this.id = this.router.snapshot.params['id'];
+      this.todo = new TodoListData(this.id, '', new Date(), false);
       // console.log(this.id)
-      this.todo = new TodoListData(1, '', new Date(), false);
+      if (this.todo.id != -1) {
       this.dataService.retrieveTodo('Najafer', this.id).subscribe(
         data => this.todo = data
       )
+      }
   }
 
   updateData() {
+    if (this.id !== -1) {
     this.dataService.updateTodo("najafer", this.todo.id, this.todo).subscribe(
       data => {
         this.todo = data
         this.route.navigate(['/todos'])
       }
     );
+    } else {
+      this.dataService.saveTodo("najafer", this.todo).subscribe(
+        data => {
+          this.todo = data
+          this.route.navigate(['/todos'])
+        },
+        error => console.log('help')
+      );
+    }
   }
 
 }

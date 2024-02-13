@@ -13,7 +13,6 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { RouteGuardService } from './services/routeGuard/route-guard.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TodoEditComponent } from './pages/todo-edit/todo-edit.component';
-import { TodoAddComponent } from './pages/todo-add/todo-add.component'
 
 
 
@@ -38,8 +37,7 @@ const routes: Routes = [
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    TodoEditComponent,
-    TodoAddComponent,
+    TodoEditComponent
   ],
   imports: [
     BrowserModule,

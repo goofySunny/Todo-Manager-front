@@ -87,24 +87,28 @@ export class TodoListComponent implements OnInit {
     this.router.navigate(['todo', id])
   }
 
-  addTodoHandler() {
-    document.getElementById("overlay")!.style.display = "block";
+  addTodo() {
+    this.router.navigate(['todo', -1])
   }
 
-  saveTodoHandler() {
-    this.toSave.done = false;
-    this.dataService.saveTodo('najafer', this.toSave).subscribe(
-      response => {
-        this.saveResponse = 'success'
+  // addTodoHandler() {
+  //   document.getElementById("overlay")!.style.display = "block";
+  // }
+
+  // saveTodoHandler() {
+  //   this.toSave.done = false;
+  //   this.dataService.saveTodo('najafer', this.toSave).subscribe(
+  //     response => {
+  //       this.saveResponse = 'success'
         
-      },
-      error => this.saveResponse = error
-    )
-    this.todos.push(this.toSave)
-    this.cancelHandler()
-  }
+  //     },
+  //     error => this.saveResponse = error
+  //   )
+  //   this.todos.push(this.toSave)
+  //   this.cancelHandler()
+  // }
 
-  cancelHandler() {
-    document.getElementById("overlay")!.style.display = "none"
-  }
+  // cancelHandler() {
+  //   document.getElementById("overlay")!.style.display = "none"
+  // }
 }
