@@ -11,8 +11,9 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { RouteGuardService } from './services/routeGuard/route-guard.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TodoEditComponent } from './pages/todo-edit/todo-edit.component';
+import { HTTPInterceptorBasicAuthServiceService } from './services/httpinterceptor-basic-auth-service.service';
 
 
 
@@ -45,7 +46,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorBasicAuthServiceService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

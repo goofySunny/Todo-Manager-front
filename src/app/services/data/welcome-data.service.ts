@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export class WelcomeData {
@@ -20,7 +20,21 @@ export class WelcomeDataService {
   }
 
   testConnectivityWithPathVariable(name:string) {
-    return this.http.get<WelcomeData>(`http://localhost:8080/hello/${name}`);
-    //console.log('meower')
+    let basicHeaderAuth = this.createHeader();
+    let headers = new HttpHeaders({
+      Authorization: basicHeaderAuth
+    })
+
+    return this.http.get<WelcomeData>(`http://localhost:8080/hello/${name}`,
+    {headers});
   }
+
+  createHeader() {
+    let username = 'user';
+    let password = 'pass';
+    let basicHeaders = 'Basic ' + window.btoa(username + ':' + password);
+    return basicHeaders;
+  }
+
+
 }
