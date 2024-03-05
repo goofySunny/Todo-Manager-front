@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { API_URL } from 'src/app/app.constants';
 
 export class WelcomeData {
   constructor(public message: string) {};
@@ -15,7 +16,7 @@ export class WelcomeDataService {
 
 
   testConnectivity() {
-    return this.http.get<WelcomeData>('http://localhost:8080/hello');
+    return this.http.get<WelcomeData>(`${API_URL}/hello`);
     //console.log('meower')
   }
 
@@ -25,7 +26,7 @@ export class WelcomeDataService {
       Authorization: basicHeaderAuth
     })
 
-    return this.http.get<WelcomeData>(`http://localhost:8080/hello/${name}`,
+    return this.http.get<WelcomeData>(`${API_URL}/hello/${name}`,
     {headers});
   }
 

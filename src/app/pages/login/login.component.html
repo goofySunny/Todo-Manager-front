@@ -3,9 +3,9 @@
     <p *ngIf="invalidPass" class="alert alert-warning">{{errorMessage}}</p>
 
     <div>
-        <form (ngSubmit)="handleBasicAuthLogin()">
-            Username: <input type="text" name="username" id="username" [(ngModel)]="username">
-            password: <input type="password" name="pass" id="pass" [(ngModel)]="password">
+        <form (ngSubmit)="handleLogin()">
+            Email: <input type="text" name="email" id="email" [(ngModel)]="user.email">
+            password: <input type="password" name="pass" id="pass" [(ngModel)]="user.password">
 
             <button type="submit" class="btn btn-success" id="submit">Login</button>
         </form>

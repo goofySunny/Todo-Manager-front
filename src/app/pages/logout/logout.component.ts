@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtAuthService } from 'src/app/services/JwtAuth/jwt-auth.service';
 import { HardCodedAuthService } from 'src/app/services/hardCodedAuth/hard-coded-auth.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { HardCodedAuthService } from 'src/app/services/hardCodedAuth/hard-coded-
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private hardCodedAuth : HardCodedAuthService) {}
+  constructor(private hardCodedAuth : HardCodedAuthService,
+    private jwtAuthService: JwtAuthService) {}
 
   ngOnInit(): void {
-      this.hardCodedAuth.logOutUser();
+      this.jwtAuthService.logOutUser();
   }
 }

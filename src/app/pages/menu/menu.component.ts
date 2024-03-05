@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtAuthService } from 'src/app/services/JwtAuth/jwt-auth.service';
 import { HardCodedAuthService } from 'src/app/services/hardCodedAuth/hard-coded-auth.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { HardCodedAuthService } from 'src/app/services/hardCodedAuth/hard-coded-
 export class MenuComponent implements OnInit {
   isUserIn : boolean = this.hardCodeAuth.isUserLoggedIn();
 
-  constructor(public hardCodeAuth: HardCodedAuthService) {
+  constructor(public hardCodeAuth: HardCodedAuthService,
+    public jwtAuthService: JwtAuthService) {
   }
 
   ngOnInit(): void {

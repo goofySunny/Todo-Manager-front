@@ -11,16 +11,16 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { RouteGuardService } from './services/routeGuard/route-guard.service';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TodoEditComponent } from './pages/todo-edit/todo-edit.component';
-import { HTTPInterceptorBasicAuthServiceService } from './services/httpinterceptor-basic-auth-service.service';
+import { HttpInterceptorService } from './services/httpIntercepter/http-interceptor.service';
 
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home/:name', component: HomeComponent, canActivate:[RouteGuardService] },
+  { path: 'home', component: HomeComponent, canActivate:[RouteGuardService] },
   { path: 'todos', component: TodoListComponent , canActivate:[RouteGuardService]},
   { path: 'logout', component: LogoutComponent, canActivate: [RouteGuardService] },
   { path: 'todo/:id', component: TodoEditComponent, canActivate: [RouteGuardService] },
@@ -47,7 +47,7 @@ const routes: Routes = [
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorBasicAuthServiceService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })
