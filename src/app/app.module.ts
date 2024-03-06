@@ -14,16 +14,18 @@ import { RouteGuardService } from './services/routeGuard/route-guard.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TodoEditComponent } from './pages/todo-edit/todo-edit.component';
 import { HttpInterceptorService } from './services/httpIntercepter/http-interceptor.service';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate:[RouteGuardService] },
+  { path: 'home', component: HomeComponent},
   { path: 'todos', component: TodoListComponent , canActivate:[RouteGuardService]},
   { path: 'logout', component: LogoutComponent, canActivate: [RouteGuardService] },
   { path: 'todo/:id', component: TodoEditComponent, canActivate: [RouteGuardService] },
+  { path: 'register', component: RegisterComponent},
   { path: '**', component: ErrorComponent }
   
 ]
@@ -38,7 +40,8 @@ const routes: Routes = [
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    TodoEditComponent
+    TodoEditComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
