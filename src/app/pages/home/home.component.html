@@ -1,18 +1,21 @@
-<div class="alert alert-danger" *ngIf="errorTitle">
-    <h2>{{ errorTitle }}</h2>
-    <p>{{ errorDesc }}</p>
-</div>
+<div class="content" id="loader" *ngIf="contentDisplay">
+    <div class="alert alert-danger content" *ngIf="errorTitle">
+        <h2>{{ errorTitle }}</h2>
+        <p>{{ errorDesc }}</p>
+    </div>
 
 
-<div class="container">
-    <p>Welcome {{name}}, how is it going</p>
-    <p>You can manage or view your todo list <a routerLink="/todos">here</a></p>
+    <div class="container">
+        <p>Welcome {{name}}, how is it going</p>
+        <p>You can manage or view your todo list <a routerLink="/todos">here</a></p>
+    </div>
+    <div class="container">
+        <span>Here you can test your api connectivity</span>
+        <button (click)="testConnectWithPathVariable(name)" class="btn btn-warning">Click</button>
+    </div>
+    <div class="container" *ngIf="message">
+        <h2>Your Customized backend gotten message is :</h2>
+        <p>{{message}}</p>
+    </div>
 </div>
-<div class="container">
-    <span>Here you can test your api connectivity</span>
-    <button (click)="testConnectWithPathVariable(name)" class="btn btn-warning">Click</button>
-</div>
-<div class="container" *ngIf="message">
-    <h2>Your Customized backend gotten message is :</h2>
-    <p>{{message}}</p>
-</div>
+<div class="loader" *ngIf="loaderDisplay"></div>

@@ -9,6 +9,8 @@ import { WelcomeData, WelcomeDataService } from 'src/app/services/data/welcome-d
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  contentDisplay = false;
+  loaderDisplay = true;
   name = '';
   message: string = '';
   errorTitle: string = '';
@@ -23,6 +25,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.name = (this.route.snapshot.params['name'])
+    setTimeout(() => {
+      this.loaderDisplay = false;
+      this.contentDisplay = true;
+    }, 1000);
   }
 
 

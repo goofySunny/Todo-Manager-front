@@ -1,13 +1,34 @@
-<div class="container">
-    <h1>Login</h1>
-    <p *ngIf="invalidPass" class="alert alert-warning">{{errorMessage}}</p>
-
-    <div>
-        <form (ngSubmit)="handleLogin()">
-            Email: <input type="text" name="email" id="email" [(ngModel)]="user.email">
-            password: <input type="password" name="pass" id="pass" [(ngModel)]="user.password">
-
-            <button type="submit" class="btn btn-success" id="submit">Login</button>
-        </form>
+<div class="content" id="contetContainer" *ngIf="contentDisplay">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="p-5 m-5 card bg-light">
+            <div class="">
+                <h1>Login</h1>
+                <p *ngIf="invalidPass" class="alert alert-warning">{{errorMessage}}</p>
+            </div>
+            <div class="">
+                <form (ngSubmit)="handleLogin()">
+                    <div class="p-1 m-1">
+                        <label for="email">Email: </label>
+                    </div>
+                    <div class="p-1 m-1">
+                        <input type="text" name="email" id="email" [(ngModel)]="user.email">
+                    </div>
+                    <div class="p-1 m-1">
+                        <label for="password">Password: </label>
+                    </div>
+                    <div class="p-1 m-1">
+                        <input type="password" name="pass" id="pass" [(ngModel)]="user.password">
+                    </div>
+                    <button type="submit" class="btn btn-success m-1" id="submit">Login</button>
+                </form>
+            </div>
+            <p>Dont have an account?<a class="link" routerLink="/register"> register </a>here</p>
+        </div>
     </div>
 </div>
+
+
+
+<!-- =================================================== -->
+<!-- Loader here  -->
+<div class="loader" id="loader" *ngIf="loaderDisplay"></div>

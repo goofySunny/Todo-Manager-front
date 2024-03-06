@@ -11,6 +11,8 @@ import { LoginService } from 'src/app/services/loginService/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  contentDisplay = false;
+  loaderDisplay = true;
   user : User = {email : '', password : ''};
   invalidPass = false;
   errorMessage: string = "Check your username or password";
@@ -36,10 +38,17 @@ export class LoginComponent implements OnInit {
       },
       err => console.log(err)
     )
-  } 
+  }
+  loadContent() {
+    document.getElementById("contentContainer")!.style.display = "block";
+    document.getElementById("loader")!.style.display = "none";
+  }
 
   ngOnInit(): void {
-
+    setTimeout(() => {
+      this.contentDisplay = true;
+      this.loaderDisplay = false;
+    }, 0);
   }
 
 
