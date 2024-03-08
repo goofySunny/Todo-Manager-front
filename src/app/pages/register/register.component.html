@@ -1,21 +1,47 @@
+<div class="container-fluid" *ngIf="registerMessage">
+    <div class="alert alert-success">
+        <h3>{{registerMessage}}</h3>
+    </div>
+</div>
 <div class="container">
     <div class="d-flex justify-content-center align-items-center p-5 m-2">
         <h1>Register an account for free!</h1>
     </div>
     <div class="row justify-content-center align-items-center">
         <div class="col-3 d-flex justify-content-center align-items-center card">
-            <form>
+            <form (ngSubmit)="registerHandler()">
+                <div class="p-1 m-1">
+                    <label for="name">Name: </label>
+                </div>
+                <div class="p-1 m-1">
+                    <input type="text" name="name" id="name" [(ngModel)]="registerUser.name">
+                </div>
+                <div class="p-1 m-1">
+                    <label for="username">Username: </label>
+                </div>
+                <div class="p-1 m-1">
+                    <input type="text" name="username" id="username" [(ngModel)]="registerUser.username">
+                </div>
                 <div class="p-1 m-1">
                     <label for="email">Email: </label>
                 </div>
                 <div class="p-1 m-1">
-                    <input type="text" name="email" id="email">
+                    <input type="text" name="email" id="email" [(ngModel)]="registerUser.email">
                 </div>
                 <div class="p-1 m-1">
                     <label for="password">Password: </label>
                 </div>
                 <div class="p-1 m-1">
-                    <input type="password" name="pass" id="pass">
+                    <input type="text" name="password" id="password" [(ngModel)]="registerUser.password">
+                </div>
+                <div class="p-1 m-1">
+                    <label for="repeatPass">Repeat Password: </label>
+                </div>
+                <div class="p-1 m-1">
+                    <input type="text" name="repeatPass" id="repeatPass" [(ngModel)]="repeatedPassword">
+                </div>
+                <div *ngIf="repeatedWrong" class="p-1 m-1">
+                    <span class="text-danger" *ngIf="repeatedWrong">check password</span>
                 </div>
                 <button type="submit" class="btn btn-success m-1" id="submit">Login</button>
             </form>
