@@ -37,8 +37,7 @@ export class TodoListComponent implements OnInit {
 
   constructor(private dataService: TodoListService,
     private route: ActivatedRoute,
-    private router: Router,
-    private cdRef: ChangeDetectorRef) { }
+    private router: Router) { }
 
 
   ngOnInit(): void {

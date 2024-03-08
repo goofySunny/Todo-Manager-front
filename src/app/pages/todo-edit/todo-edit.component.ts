@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoListData } from '../todo-list/todo-list.component';
 import { TodoListService } from 'src/app/services/data/todo-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JwtAuthService } from 'src/app/services/JwtAuth/jwt-auth.service';
 
 @Component({
   selector: 'app-todo-edit',
@@ -9,22 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./todo-edit.component.scss']
 })
 export class TodoEditComponent implements OnInit {
+  username: any;
   todo: TodoListData;
   id : number = 0;
   
   
   constructor(private dataService: TodoListService,
     private router: ActivatedRoute,
+    private jwtService: JwtAuthService,
     private route: Router) {
 
   }
 
   ngOnInit(): void {
+      this.username = this.jwtService.getUsername()
       this.id = this.router.snapshot.params['id'];
       this.todo = new TodoListData(this.id, '', new Date(), false);
       // console.log(this.id)
       if (this.todo.id != -1) {
-      this.dataService.retrieveTodo('Najafer', this.id).subscribe(
+      this.dataService.retrieveTodo(this.username, this.id).subscribe(
         data => this.todo = data
       )
       }
@@ -32,17 +36,18 @@ export class TodoEditComponent implements OnInit {
 
   updateData() {
     if (this.id !== -1) {
-    this.dataService.updateTodo("najafer", this.todo.id, this.todo).subscribe(
+    this.dataService.updateTodo(this.username, this.todo.id, this.todo).subscribe(
       data => {
+        console.log('im success')
         this.todo = data
-        this.route.navigate(['/todos'])
+        this.route.navigate([`/todos/${this.username}`])
       }
     );
     } else {
-      this.dataService.saveTodo("najafer", this.todo).subscribe(
+      this.dataService.saveTodo(this.username, this.todo).subscribe(
         data => {
           this.todo = data
-          this.route.navigate(['/todos'])
+          this.route.navigate([`/todos/${this.username}`])
         },
         error => console.log('help')
       );
