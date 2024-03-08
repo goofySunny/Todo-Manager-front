@@ -5,7 +5,9 @@
         <ul class="navbar-nav">
 
             <li *ngIf="jwtAuthService.isUserLoggedIn()"><a href="/home" class="nav-link">Home</a></li>
-            <li *ngIf="jwtAuthService.isUserLoggedIn()"><a href="/todos" class="nav-link">TodoList</a></li>
+            <li *ngIf="jwtAuthService.isUserLoggedIn()">
+                <a [routerLink]="['/todos', getUserName() ]" class="nav-link">TodoList</a>
+              </li>
         
         </ul>
 

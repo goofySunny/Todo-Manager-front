@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
       (data : any) => {
         console.log('login success')
         this.router.navigate(['home'])
-        return this.jwtService.setJwtToken(data.token);
+        this.jwtService.setJwtToken(data.token);
+        this.jwtService.setUsername(data.username);
 
       },
       err => console.log(err)

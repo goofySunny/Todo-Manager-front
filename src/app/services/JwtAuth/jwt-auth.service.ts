@@ -5,6 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class JwtAuthService {
 
+  getUsername() {
+    return sessionStorage.getItem('username')
+  }
+
+  setUsername(username : string) {
+    sessionStorage.setItem('username', username)
+  }
+
 
   getJwtToken() {
     let token = sessionStorage.getItem('token');

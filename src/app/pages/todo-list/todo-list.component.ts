@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TodoListService } from 'src/app/services/data/todo-list.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -18,7 +18,7 @@ export class TodoListData {
 })
 export class TodoListComponent implements OnInit {
   alert: string = '';
-  username: string = 'najafer';
+  username: string = this.route.snapshot.params['username'];
   alertStatus: boolean = false;
   todos: TodoListData[] = [];
   toSave: TodoListData;
@@ -36,13 +36,15 @@ export class TodoListComponent implements OnInit {
   // ]
 
   constructor(private dataService: TodoListService,
+    private route: ActivatedRoute,
     private router: Router,
     private cdRef: ChangeDetectorRef) { }
 
 
   ngOnInit(): void {
     this.toSave = new TodoListData(0, '', new Date(), false);
-    this.dataService.retrieveAllTodos('sunny').subscribe(
+
+    this.dataService.retrieveAllTodos(this.username).subscribe(
       response => {
         // console.log(response)
         this.todos = response;

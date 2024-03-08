@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent},
-  { path: 'todos', component: TodoListComponent , canActivate:[RouteGuardService]},
+  { path: 'todos/:username', component: TodoListComponent , canActivate:[RouteGuardService]},
   { path: 'logout', component: LogoutComponent, canActivate: [RouteGuardService] },
   { path: 'todo/:id', component: TodoEditComponent, canActivate: [RouteGuardService] },
   { path: 'register', component: RegisterComponent},

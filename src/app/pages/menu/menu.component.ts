@@ -8,14 +8,18 @@ import { HardCodedAuthService } from 'src/app/services/hardCodedAuth/hard-coded-
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  isUserIn : boolean = this.hardCodeAuth.isUserLoggedIn();
+  username: any;
+
 
   constructor(public hardCodeAuth: HardCodedAuthService,
     public jwtAuthService: JwtAuthService) {
   }
 
   ngOnInit(): void {
-      console.log(this.hardCodeAuth.isUserLoggedIn())
+  }
+
+  getUserName() {
+    return this.jwtAuthService.getUsername();
   }
 
 }
