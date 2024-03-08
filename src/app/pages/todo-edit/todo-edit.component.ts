@@ -49,7 +49,6 @@ export class TodoEditComponent implements OnInit {
           this.todo = data
           this.route.navigate([`/todos/${this.username}`])
         },
-        error => console.log('help')
       );
     }
   }

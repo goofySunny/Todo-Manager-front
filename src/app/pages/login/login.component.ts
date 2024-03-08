@@ -36,9 +36,7 @@ export class LoginComponent implements OnInit {
         this.jwtService.setJwtToken(data.token);
         this.jwtService.setUsername(data.username);
 
-      },
-      err => console.log(err)
-    )
+      })
   }
   loadContent() {
     document.getElementById("contentContainer")!.style.display = "block";

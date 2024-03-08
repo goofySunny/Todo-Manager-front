@@ -48,7 +48,6 @@ export class TodoListComponent implements OnInit {
         // console.log(response)
         this.todos = response;
       },
-      error => console.log(error)
     );
   }
 
@@ -75,12 +74,7 @@ export class TodoListComponent implements OnInit {
         // Update alert messages
         this.alert = 'Deletion successful';
         this.alertStatus = true;
-      },
-      error => {
-        this.alert = 'Deletion failed';
-        this.alertStatus = false;
-      }
-    );
+      })
   }
 
   updateTodo(id: number) {
