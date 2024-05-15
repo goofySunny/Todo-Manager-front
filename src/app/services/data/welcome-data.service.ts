@@ -15,19 +15,13 @@ export class WelcomeDataService {
 
 
 
-  testConnectivity() {
+  // testConnectivity() {
+  //   return this.http.get<WelcomeData>(`${API_URL}/hello`);
+  //   //console.log('meower')
+  // }
+
+  testConnectivityWithPathVariable() {
     return this.http.get<WelcomeData>(`${API_URL}/hello`);
-    //console.log('meower')
-  }
-
-  testConnectivityWithPathVariable(name:string) {
-    let basicHeaderAuth = this.createHeader();
-    let headers = new HttpHeaders({
-      Authorization: basicHeaderAuth
-    })
-
-    return this.http.get<WelcomeData>(`${API_URL}/hello/${name}`,
-    {headers});
   }
 
   createHeader() {

@@ -19,5 +19,4 @@ export class LoginService {
   registerUser(user : RegisterUser) {
     return this.http.post(`${API_URL}/api/v1/auth/register`, user);
   }
-
 }

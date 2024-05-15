@@ -28,6 +28,7 @@ export class RegisterComponent {
           console.log(data)
           this.registerMessage = 'Success!'
           this.jwtService.setJwtToken(data.token)
+          this.jwtService.setUsername(data.username)
           setTimeout(() => {
             this.router.navigate(['home'])
           }, 2000);

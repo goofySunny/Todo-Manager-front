@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtAuthService } from 'src/app/services/JwtAuth/jwt-auth.service';
 import { BasicAuthenticationService } from 'src/app/services/hardCodedAuth/basic-auth.service';
@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/loginService/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   contentDisplay = false;
   loaderDisplay = true;
   user : User = {email : '', password : ''};
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private hardCodedAuthService: HardCodedAuthService,
     private basicAuthService: BasicAuthenticationService,
-    private loginService : LoginService,
+    public loginService : LoginService,
     private jwtService: JwtAuthService) {
 
   }
@@ -48,6 +48,10 @@ export class LoginComponent implements OnInit {
       this.contentDisplay = true;
       this.loaderDisplay = false;
     }, 0);
+  }
+
+  ngOnDestroy(): void {
+      
   }
 
 

@@ -34,14 +34,14 @@ export class HomeComponent implements OnInit {
 
   testConnect() {
     // console.log(this.service.testConnectivity());
-    this.service.testConnectivity().subscribe(
+    this.service.testConnectivityWithPathVariable().subscribe(
       response => this.handleSuccessfulTestConnect(response));
   }
 
   testConnectWithPathVariable(name:string) {
     name = this.name;
     // console.log(this.service.testConnectivityWithPathVariable(name));
-    this.service.testConnectivityWithPathVariable(name).subscribe(
+    this.service.testConnectivityWithPathVariable().subscribe(
       response => this.handleSuccessfulTestConnect(response));
   }
 
