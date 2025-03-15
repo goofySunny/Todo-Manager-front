@@ -2,3 +2,25 @@
     text-decoration: none;
     color : #2387af
 }
+
+.shown {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.spinner {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border-bottom: solid black 3px;
+    animation: processing 2s infinite;
+}
+
+@keyframes processing {
+    to {
+        transform: rotate(360deg);
+    }
+}
