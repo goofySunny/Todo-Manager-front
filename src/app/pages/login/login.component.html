@@ -19,7 +19,10 @@
                     <div class="p-1 m-1">
                         <input type="password" name="pass" id="pass" [(ngModel)]="user.password">
                     </div>
-                    <button type="submit" class="btn btn-success m-1" id="submit">Login</button>
+                    <button type="submit" class="btn btn-success m-1" id="submit">
+                        <span #btntext [ngClass]="loading ? 'hidden' : 'shown'">Login</span>
+                        <div #spinner class="spinner" [ngClass]="loading ? 'shown' : 'hidden'"></div>
+                    </button>
                 </form>
             </div>
             <p>Dont have an account?<a class="link" routerLink="/register"> register </a>here</p>
