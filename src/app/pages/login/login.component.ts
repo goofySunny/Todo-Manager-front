@@ -9,6 +9,7 @@ import { LoginService } from 'src/app/services/loginService/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  loading = false;
   contentDisplay = false;
   loaderDisplay = true;
   user : User = {email : '', password : ''};
@@ -25,15 +26,25 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   handleLogin() {
+    this.loading = true
     return this.loginService.logUserIn(this.user).subscribe(
       (data : any) => {
         console.log('login success')
         this.router.navigate(['home'])
         this.jwtService.setJwtToken(data.token);
         this.jwtService.setUsername(data.username);
-
-      })
+        this.loading = false;
+      },
+      (error : any) => {
+        this.loading = false;
+        this.invalidPass = true;
+        setTimeout(() => {
+          this.invalidPass = false;
+        }, 3000);
+      }
+    )
   }
+
   loadContent() {
     document.getElementById("contentContainer")!.style.display = "block";
     document.getElementById("loader")!.style.display = "none";
