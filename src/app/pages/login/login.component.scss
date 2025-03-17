@@ -16,11 +16,12 @@
     width: 30px;
     border-radius: 50%;
     border-bottom: solid black 3px;
-    animation: processing 2s infinite;
+    animation: processing 4s infinite;
 }
 
 @keyframes processing {
-    to {
-        transform: rotate(360deg);
-    }
+    0% {transform: rotate(0deg)}
+    25% {transform: rotate(270deg)}
+    50% {transform: rotate(90deg)}
+    100% {transform: rotate(360deg)}
 }
