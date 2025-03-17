@@ -27,22 +27,45 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   handleLogin() {
     this.loading = true
-    return this.loginService.logUserIn(this.user).subscribe(
-      (data : any) => {
-        console.log('login success')
-        this.router.navigate(['home'])
+    return this.loginService.logUserIn(this.user).subscribe({
+      next: (data : any) => {
         this.jwtService.setJwtToken(data.token);
         this.jwtService.setUsername(data.username);
-        this.loading = false;
       },
-      (error : any) => {
+      error: (error : any) => {
         this.loading = false;
         this.invalidPass = true;
         setTimeout(() => {
           this.invalidPass = false;
         }, 3000);
+      },
+      complete: () => {
+        this.loading = false;
+        this.router.navigate(['home'])
       }
-    )
+    })
+
+    // This rxjs subscribe has been deprecated therefore no longer used but the comment will be left behind for whoever may it may help if ever
+
+    // return this.loginService.logUserIn(this.user).subscribe(
+    //   (data : any) => {
+    //     console.log('login success')
+    //     this.router.navigate(['home'])
+    //     this.jwtService.setJwtToken(data.token);
+    //     this.jwtService.setUsername(data.username);
+    //     this.loading = false;
+    //   },
+    //   (error : any) => {
+    //     this.loading = false;
+    //     this.invalidPass = true;
+    //     setTimeout(() => {
+    //       this.invalidPass = false;
+    //     }, 3000);
+    //   }
+    // )
+
+    // End of Deprecation
+
   }
 
   loadContent() {
