@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { User } from 'src/app/shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtAuthService } from 'src/app/services/JwtAuth/jwt-auth.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
@@ -6,33 +7,32 @@ import { LoginService } from 'src/app/services/loginService/login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   contentDisplay = false;
   loaderDisplay = true;
-  user : User = {email : '', password : ''};
+  user: User = new User();
   invalidPass = false;
-  errorMessage: string = "Check your username or password";
+  errorMessage: string = 'Check your username or password';
   btn = document.getElementById('btn');
-  token : string;
+  token: string;
 
-
-  constructor(private router: Router,
-    public loginService : LoginService,
-    private jwtService: JwtAuthService) {
-
-  }
+  constructor(
+    private router: Router,
+    public loginService: LoginService,
+    private jwtService: JwtAuthService
+  ) {}
 
   handleLogin() {
-    this.loading = true
+    this.loading = true;
     return this.loginService.logUserIn(this.user).subscribe({
-      next: (data : any) => {
+      next: (data: any) => {
         this.jwtService.setJwtToken(data.token);
         this.jwtService.setUsername(data.username);
       },
-      error: (error : any) => {
+      error: (error: any) => {
         this.loading = false;
         this.invalidPass = true;
         setTimeout(() => {
@@ -41,9 +41,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       },
       complete: () => {
         this.loading = false;
-        this.router.navigate(['home'])
-      }
-    })
+        this.router.navigate(['home']);
+      },
+    });
 
     // This rxjs subscribe has been deprecated therefore no longer used but the comment will be left behind for whoever may it may help if ever
 
@@ -65,12 +65,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     // )
 
     // End of Deprecation
-
   }
 
   loadContent() {
-    document.getElementById("contentContainer")!.style.display = "block";
-    document.getElementById("loader")!.style.display = "none";
+    document.getElementById('contentContainer')!.style.display = 'block';
+    document.getElementById('loader')!.style.display = 'none';
   }
 
   ngOnInit(): void {
@@ -80,14 +79,5 @@ export class LoginComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
-  ngOnDestroy(): void {
-      
-  }
-
-  }
-
-
-  export class User { 
-    email : string;
-    password: string;
-  }
+  ngOnDestroy(): void {}
+}
