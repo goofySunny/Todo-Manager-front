@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoListData } from '../todo-list/todo-list.component';
 import { TodoListService } from 'src/app/services/data/todo-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtAuthService } from 'src/app/services/JwtAuth/jwt-auth.service';
+import { TodoListData } from 'src/app/shared/models/todo.model';
 
 @Component({
   selector: 'app-todo-edit',

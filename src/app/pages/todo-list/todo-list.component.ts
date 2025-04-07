@@ -1,15 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { TodoListService } from 'src/app/services/data/todo-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
-
-export class TodoListData {
-  constructor(public id: number,
-    public desc: string,
-    public date: Date,
-    public done: boolean) { }
-}
+import { TodoListService } from 'src/app/services/data/todo-list.service';
+import { TodoListData } from 'src/app/shared/models/todo.model';
 
 @Component({
   selector: 'app-todo-list',
