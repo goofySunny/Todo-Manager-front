@@ -1,0 +1,49 @@
+.eContainer {
+    padding: 100px 20%;
+}
+
+.eTable {
+    width: 100%;
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody> tr:hover {
+    background-color: #d9d9d9;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.eButton {
+    all: unset;
+    cursor: pointer;
+    padding: 5px 5px;
+    border-radius: 15%;
+}
+
+.edit {
+    background-color: cadetblue;
+}
+
+.remove {
+    background-color: crimson;
+}
+
+.add {
+    background-color: greenyellow;
+}
+
+.underTable {
+    margin: 20px 20px;
+    display: flex;
+    justify-content: end;
+}

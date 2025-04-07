@@ -1,22 +1,26 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark px-4">
-        <div><a class="navbar-brand" href="/home">Meower Tech</a></div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark px-4">
+    <div><a class="navbar-brand" href="/home">Meower Tech</a></div>
 
-        <ul class="navbar-nav">
+    <ul class="navbar-nav">
+      <li *ngIf="jwtAuthService.isUserLoggedIn()">
+        <a href="/home" class="nav-link">Home</a>
+      </li>
+      <li *ngIf="jwtAuthService.isUserLoggedIn()">
+        <a [routerLink]="['/todos', getUserName()]" class="nav-link">TodoList</a>
+      </li>
+      <li *ngIf="jwtAuthService.isUserLoggedIn()">
+        <a [routerLink]="['/expenses', getUserName()]" class="nav-link">ExpenseList</a>
+      </li>
+    </ul>
 
-            <li *ngIf="jwtAuthService.isUserLoggedIn()"><a href="/home" class="nav-link">Home</a></li>
-            <li *ngIf="jwtAuthService.isUserLoggedIn()">
-                <a [routerLink]="['/todos', getUserName() ]" class="nav-link">TodoList</a>
-              </li>
-        
-        </ul>
-
-        
-        <ul class="navbar-nav justify-content-end navbar-collapse">
-
-            <li *ngIf="!jwtAuthService.isUserLoggedIn()"><a href="/login" class="nav-link">Login</a></li>
-            <li *ngIf="jwtAuthService.isUserLoggedIn()"><a href="/logout" class="nav-link">Logout</a></li>
-        
-        </ul>
-    </nav>
+    <ul class="navbar-nav justify-content-end navbar-collapse">
+      <li *ngIf="!jwtAuthService.isUserLoggedIn()">
+        <a href="/login" class="nav-link">Login</a>
+      </li>
+      <li *ngIf="jwtAuthService.isUserLoggedIn()">
+        <a href="/logout" class="nav-link">Logout</a>
+      </li>
+    </ul>
+  </nav>
 </header>

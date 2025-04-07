@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TodoEditComponent } from './pages/todo-edit/todo-edit.component';
 import { HttpInterceptorService } from './services/httpIntercepter/http-interceptor.service';
 import { RegisterComponent } from './pages/register/register.component';
+import { ExpenseListComponent } from './pages/expense-list/expense-list.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent},
   { path: 'todos/:username', component: TodoListComponent , canActivate:[AuthGuard]},
+  {path: 'expenses/:username', component: ExpenseListComponent, canActivate:[AuthGuard]},
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'todo/:id', component: TodoEditComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent},
@@ -41,7 +43,8 @@ const routes: Routes = [
     FooterComponent,
     LogoutComponent,
     TodoEditComponent,
-    RegisterComponent
+    RegisterComponent,
+    ExpenseListComponent
   ],
   imports: [
     BrowserModule,
