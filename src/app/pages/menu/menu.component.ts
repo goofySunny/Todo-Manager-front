@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtAuthService } from 'src/app/services/JwtAuth/jwt-auth.service';
-import { HardCodedAuthService } from 'src/app/services/hardCodedAuth/hard-coded-auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +10,7 @@ export class MenuComponent implements OnInit {
   username: any;
 
 
-  constructor(public hardCodeAuth: HardCodedAuthService,
-    public jwtAuthService: JwtAuthService) {
+  constructor(public jwtAuthService: JwtAuthService) {
   }
 
   ngOnInit(): void {
