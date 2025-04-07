@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import { Observable } from 'rxjs';
 import { JwtAuthService } from '../JwtAuth/jwt-auth.service';
@@ -6,10 +6,7 @@ import { JwtAuthService } from '../JwtAuth/jwt-auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RouteGuardService implements CanActivate {
-
-
-
+export class RouteGuardService {
 
   constructor(private router: Router, private jwtAuthService : JwtAuthService) { }
 
@@ -22,5 +19,8 @@ export class RouteGuardService implements CanActivate {
       return false;
     }
   }
+}
 
+export const AuthGuard = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  return inject(RouteGuardService).canActivate(route, state);
 }
