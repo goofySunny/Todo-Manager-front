@@ -1,4 +1,4 @@
-<div class="eContainer">
+<div class="eContainer" #parent>
     <h3>Expenses</h3>
     <table class="eTable">
         <thead>
@@ -16,10 +16,10 @@
                 <td>{{ expense.amount }}</td>
                 <td>{{ expense.category }}</td>
                 <td>
-                    <button class="eButton edit">Edit</button>
+                    <button class="eButton edit" (click)="edit(expense)">Edit</button>
                 </td>
                 <td>
-                    <button class="eButton remove">Remove</button>
+                    <button class="eButton remove" (click)="delete(expense)">Remove</button>
                 </td>
             </tr>
         </tbody>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ExpenseData } from 'src/app/shared/models/expense.model';
 
 @Component({
@@ -7,6 +8,8 @@ import { ExpenseData } from 'src/app/shared/models/expense.model';
   styleUrls: ['./expense-list.component.scss']
 })
 export class ExpenseListComponent {
+  @ViewChild("parent")
+  parentDiv : HTMLDivElement;
 
   expenses : ExpenseData[] = [
     new ExpenseData(1, "Milk, Ice Cream", 100000, "Grocery"),
@@ -15,5 +18,31 @@ export class ExpenseListComponent {
     new ExpenseData(4, "Benzene", 45000, "Fuel")
   
   ];
+
+
+  constructor(private router: Router) {}
+
+  edit(e : ExpenseData) {
+    this.router.navigate(["/expenses/ali", e.id])
+  }
+
+  delete(e : ExpenseData) {
+    let index = this.expenses.indexOf(e);
+    if (index != -1) {
+      this.expenses.splice(index, 1);
+    } else {
+      this.emitError("Something went Wrong!")
+    }
+  }
+
+  add() {
+
+  }
+
+  emitError(message: string) {
+    let errorDiv = new HTMLDivElement();
+    errorDiv.className = "errorDiv";
+    this.parentDiv.prepend(errorDiv);
+  }
 
 }
